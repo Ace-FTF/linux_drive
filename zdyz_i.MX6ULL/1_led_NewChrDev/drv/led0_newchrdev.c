@@ -77,7 +77,7 @@ void led_set(int led_status) {
 
 /* 功能函数1：open */
 static int led_open(struct inode *inode, struct file *file) {
-
+    file->private_data = &led; /* 设置文件私有数据 */
     return 0;
 }
 
