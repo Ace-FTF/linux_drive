@@ -58,7 +58,8 @@ led_device_struct led; /* 实例化设备 */
 #define LED_OFF 0 /* 寄存器写入1为off */
 
 /* led亮灭操作函数 */
-void led_set(int led_status) {
+void led_set(int led_status) 
+{
     int val = 0;
     if (led_status == LED_ON) {
         /* 寄存器写入0为on */
@@ -76,13 +77,15 @@ void led_set(int led_status) {
 }
 
 /* 功能函数1：open */
-static int led_open(struct inode *inode, struct file *file) {
+static int led_open(struct inode *inode, struct file *file) 
+{
     file->private_data = &led; /* 设置文件私有数据 */
     return 0;
 }
 
 /* 功能函数2：write */
-static ssize_t led_write(struct file *file, const char __user *user_buff, size_t cnt, loff_t *loff) {
+static ssize_t led_write(struct file *file, const char __user *user_buff, size_t cnt, loff_t *loff) 
+{
     int val;
     unsigned char data_buff[100];
 
@@ -113,7 +116,8 @@ static struct file_operations led_fops = {
 };
 
 /*************************    驱动入口/出口函数    ***********************************/
-static int __init led_init(void) {
+static int __init led_init(void)
+{
     int val;
 
     /* 一、寄存器虚拟映射 */
@@ -175,7 +179,8 @@ static int __init led_init(void) {
     return 0;
 }
 
-static void __exit led_exit(void) {
+static void __exit led_exit(void) 
+{
     /* 一、寄存器取消映射 */
     iounmap(imx6u_ccm_ccgr1);
     iounmap(sw_mux_gpio1_io03);

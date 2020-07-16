@@ -14,7 +14,8 @@
 
 #define LED_NAME  "/dev/led0" /* 设备名 */
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
     unsigned char para[3];
     int fd;
     int ret;

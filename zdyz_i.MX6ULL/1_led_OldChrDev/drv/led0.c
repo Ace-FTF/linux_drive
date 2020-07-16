@@ -44,7 +44,8 @@ volatile unsigned long *GPIO1_DR = NULL;
  * 功能：led写高电平or低电平
  * 用户层发送命令:./led on/off,即参数user_buff只能是on或off
  */
-ssize_t led_write(struct file *file, const char __user *user_buff, size_t cnt, loff_t *loff) {
+ssize_t led_write(struct file *file, const char __user *user_buff, size_t cnt, loff_t *loff)
+{
     int value;
     unsigned char data_buff[100];
 
@@ -75,7 +76,8 @@ static struct file_operations led_fops = {
 
 /*****************************    分割线：驱动入口    *****************************/
 /* led驱动入口函数 */
-static int __init led_init(void) {
+static int __init led_init(void)
+{
     int temp;
 
     /* 初始化led对应GPIO寄存器 */
@@ -112,7 +114,8 @@ static int __init led_init(void) {
 }
 
 /* led驱动出口函数 */
-static void __exit led_exit(void) {
+static void __exit led_exit(void)
+{
     /* 1 寄存器地址解除映射 */
     iounmap(IMX6U_CCM_CCGR1);
     iounmap(SW_MUX_GPIO1_IO03);
