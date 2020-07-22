@@ -57,8 +57,10 @@ ssize_t led_write(struct file *file, const char __user *user_buff, size_t cnt, l
     }
 
     if (strncmp(data_buff, "on", strlen("on")) == 0) {
+        printk("User input : led on.\r\n");
         *GPIO1_DR = ((*GPIO1_DR) & ~(1 << 3));    /* 寄存器写入0为on */
     } else if (strncmp(data_buff, "off", strlen("off")) == 0) {
+        printk("User input : led off.\r\n");
         *GPIO1_DR = ((*GPIO1_DR) | (1 << 3));     /* 寄存器写入1为off */
     } else {
         printk("The level must be 0 or 1.\r\n"); 

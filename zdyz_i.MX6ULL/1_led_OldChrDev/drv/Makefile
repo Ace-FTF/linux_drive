@@ -1,4 +1,5 @@
-KERNELDIR := /home/lsy/practice/arm/zdyz/system/kernel/linux-imx-rel_imx_4.1.15_2.1.0_ga_alientek
+KERNELDIR := /home/lsy/practice/arm/zdyz/system/11_zdyz_kernel_uboot/kernel/linux-imx-rel_imx_4.1.15_2.1.0_ga_alientek
+
 CURRENT_PATH := $(shell pwd)
 obj-m := led0.o
 

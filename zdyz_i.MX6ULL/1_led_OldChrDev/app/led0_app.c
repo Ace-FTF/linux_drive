@@ -32,11 +32,13 @@ int main(int argc, char *argv[])
 
     fd = open(LED_NAME, O_RDWR);
     if (fd < 0) {
+        printf("Open file failed.\r\n");
         exit(0); 
     }
 
     ret = write(fd, argv[1], sizeof(argv[1]));
     if (ret < 0) {
+        printf("Write file failed.\r\n");
         close(fd);
         exit(0); 
     }
