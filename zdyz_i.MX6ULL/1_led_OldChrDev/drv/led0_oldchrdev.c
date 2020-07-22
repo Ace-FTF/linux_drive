@@ -22,8 +22,8 @@
 #include <asm/uaccess.h>
 #include <asm/io.h>
 
-#define LED_MAJOR 200    /* 主设备号 */
-#define LED_NAME  "led0" /* 设备名 */
+#define LED_MAJOR 200              /* 主设备号 */
+#define LED_NAME  "led0_oldchrdev" /* 设备名 */
 
 /* 寄存器物理地址 */
 #define CCM_CCGR1_BASE         0x020C406C  /* GPIO时钟使能寄存器 */

@@ -12,7 +12,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
-#define LED_NAME  "/dev/led0" /* 设备名 */
+#define LED_NAME  "/dev/led0_oldchrdev" /* 设备名 */
 
 int main(int argc, char *argv[])
 {

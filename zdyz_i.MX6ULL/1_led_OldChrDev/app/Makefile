@@ -2,9 +2,9 @@ CROSS_COMPILE = arm-linux-gnueabihf-
 CC = gcc
 RM = rm
 
-OBJ = led0_app
+OBJ = led0_oldchrdev_app
 
-$(OBJ) : led0_app.c
+$(OBJ) : led0_oldchrdev_app.c
 	$(CROSS_COMPILE)$(CC) $< -o $@
 
 .PHONY:
