@@ -9,7 +9,7 @@
 	compatible = "fsl,imx6ull-14x14-evk", "fsl,imx6ull";
 
     /* lsy add pinctrl node */
-    lsy_led0_UsePinCtrl {
+    lsy_led0_usePinCtrl {
         #address-cells = <1>;
         #size-cells = <1>;
         compatible = "lsy-dont-know-why-gpioled";
