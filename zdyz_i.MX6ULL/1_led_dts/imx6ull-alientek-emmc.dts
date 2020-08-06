@@ -1,0 +1,61 @@
+/*
+ * Copyright (C) 2016 Freescale Semiconductor, Inc.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+
+/dts-v1/;
+
+#include <dt-bindings/input/input.h>
+#include "imx6ull.dtsi"
+
+/ {
+	model = "Freescale i.MX6 ULL 14x14 EVK Board";
+	compatible = "fsl,imx6ull-14x14-evk", "fsl,imx6ull";
+
+    /* lsy add */
+    lsy_led0 {
+        #address-cells = <1>;
+        #size-cells = <1>;
+        compatible = "lsy-led0-dts";
+        status = "okay";
+        reg = < 0x020C406C 0X04    /* CCM_CCGR1_BASE */
+                0x020E0068 0x04    /* SW_MUX_GPIO1_IO03_BASE */
+                0x020E02F4 0x04    /* SW_PAD_GPIO1_IO03_BASE */
+                0x0209C000 0x04    /* GPIO1_DR_BASE */
+                0x0209C004 0x04>;  /* GPIO1_GDIR_BASE */
+    };
+
+    ...省略大量源代码...
+};
+
+...省略大量源代码...
+
+&iomuxc_snvs {
+	pinctrl-names = "default_snvs";
+    pinctrl-0 = <&pinctrl_hog_2>;
+    imx6ul-evk {
+        ......
+
+        /* lsy add eth */
+        /* lsy enet1 reset */
+        pinctrl_enet1_reset: enet1resetgrp {
+            fsl,pin = <
+                MX6ULL_PAD_SNVS_TAMPER7__GPIO5_IO07  0x10B0
+            >;
+        };
+
+        /* lsy enet2 reset */
+        pinctrl_enet2_reset: enet2resetgrp {
+            fsl,pin = <
+                MX6ULL_PAD_SNVS_TAMPER8__GPIO5_IO08  0x10B0
+            >;
+        };
+        /* lsy add eth end */
+    };
+};
+
+......
+
