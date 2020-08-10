@@ -1,1 +1,0 @@
-![img](file:///C:/Users/35008/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png)

@@ -1,0 +1,1 @@
+pin: GPIO5_IO01
