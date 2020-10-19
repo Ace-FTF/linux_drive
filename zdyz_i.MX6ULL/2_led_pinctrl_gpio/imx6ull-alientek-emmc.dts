@@ -12,10 +12,10 @@
     lsy_led0_usePinCtrl {
         #address-cells = <1>;
         #size-cells = <1>;
-        compatible = "lsy-dont-know-why-gpioled"; /* Linux会根据compatbile属性值，来查找对应驱动文件 */
+        compatible = "fsl, imx6ul-iomuxc";      /* Linux会根据compatbile属性值，来查找对应驱动文件 */
         pinctrl-names = "default";
-        pinctrl-0 = <&pinctrl_lsypinctrlled>;     /* 表示该设备所使用的pin信息保存在pinctrl_lsypinctrlled节点中 */
-        led-gpio = <&gpio1 3 GPIO_ACTIVE_LOW>;    /* led-gpio 属性指定了 LED 灯所使用的 GPIO */
+        pinctrl-0 = <&pinctrl_lsypinctrlled>;   /* 表示该设备所使用的pin信息保存在pinctrl_lsypinctrlled节点中 */
+        led-gpio = <&gpio1 3 GPIO_ACTIVE_LOW>;  /* led-gpio 属性指定了 LED 灯所使用的 GPIO */
         status = "okay";
     };
     /* lsy add pinctrl node end */
