@@ -8,17 +8,31 @@
 	model = "Freescale i.MX6 ULL 14x14 EVK Board";
 	compatible = "fsl,imx6ull-14x14-evk", "fsl,imx6ull";
 
-    /* lsy add pinctrl node */
-    lsy_led0_usePinCtrl {
+    /* step2. 根节点下创建led灯设备节点，该步骤会在/proc/device-tree目录下生成名字为【gpiolsyled】的设备供驱动程序操作 */
+    gpiolsyled {
         #address-cells = <1>;
         #size-cells = <1>;
-        compatible = "fsl, imx6ul-iomuxc";      /* Linux会根据compatbile属性值，来查找对应驱动文件 */
+        compatible = "atkalpha-gpioled";        /* Linux会根据compatbile属性值，来查找对应的驱动文件 */
         pinctrl-names = "default";
-        pinctrl-0 = <&pinctrl_lsypinctrlled>;   /* 表示该设备所使用的pin信息保存在pinctrl_lsypinctrlled节点中 */
-        led-gpio = <&gpio1 3 GPIO_ACTIVE_LOW>;  /* led-gpio 属性指定了 LED 灯所使用的 GPIO */
+        pinctrl-0 = <&pinctrl_lsyled>;          /* pinctrl-0 属性的值为：step1创建的节点，即：pinctrl_lsyled，表示该设备所使用
+        led-gpio = <&gpio1 3 GPIO_ACTIVE_LOW>;  /* led-gpio 属性指定了该设备所使用的GPIO引脚 */
         status = "okay";
     };
-    /* lsy add pinctrl node end */
+    /* step2 end. */
+
+    /*                                                                                                                        
+     * step3: 注释掉系统默认GPIO1 IO03的默认功能！！该步骤非常重要！！
+     *
+     *        检查关键字是否别处有在使用，如果找到则注释掉：
+     *        1、检查pinctrl信息。
+     *                即：检查别处是否有地方在使用【step1步骤中的 led pin配置信息宏字符串】，
+     *                即：搜索关键字：【MX6UL_PAD_GPIO1_IO03__GPIO1_IO03】
+     *
+     *        2、如果第一步中被配置为GPIO的话，则检查GPIO引脚有没有在别处被别的外设使用。
+     *                即：检查别处是否有地方在使用【step2步骤中的 led-gpio属性 中的的GPIO引脚】，
+     *                即：搜索关键字：【gpio1 3】
+     */
+
 
 }
 
@@ -30,20 +44,21 @@
 	......
     
 	imx6ul-evk {
-        /* lsy add pinctrl */
-        pinctrl_lsypinctrlled: pinctrl_lsypinctrlledgrp { 
-            fsl,pins = <
-                MX6UL_PAD_GPIO1_IO03__GPIO1_IO03 0x10B0 /* led0 */    
+
+        /* step1. 在iomuxc节点中创建pinctrl节点，名字为：pinctrl_lsyled，保存pin配置信息 */                                   
+        pinctrl_lsyled: lsyledgrp {
+            fsl,pins = <                                /* 注意：fsl,pin 之间不要有空格，包括逗号前后都不要有空格，否则语法错>
+                MX6UL_PAD_GPIO1_IO03__GPIO1_IO03 0x10B0 /* led0 pin  配置信息 */
             >;
         };
-        /* lsy add pinctrl end */
+        /* step1 end. */
 
 
 
 		pinctrl_tsc: tscgrp {
 			fsl,pins = <
 				......
-				/* MX6UL_PAD_GPIO1_IO03__GPIO1_IO03	0xb0 */  /* 注释掉使用GPIO1 IO03的默认功能 */
+				/* MX6UL_PAD_GPIO1_IO03__GPIO1_IO03>0xb0 */ /* step3: 注释掉系统GPIO1 IO03的默认功能 */
 				......
 			>;
 		};
@@ -56,7 +71,7 @@
 
 &tsc {
 	......
-	/* xnur-gpio = <&gpio1 3 GPIO_ACTIVE_LOW>; */ /* 注释掉使用GPIO1 IO03的默认功能 */
+	/* xnur-gpio = <&gpio1 3 GPIO_ACTIVE_LOW>; */ /* step3: 注释掉系统默认的GPIO功能 */ 
 	......
 };
 
