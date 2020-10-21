@@ -19,7 +19,7 @@
 #define LED_DTS_DEV_NAME  "led0_pinctrl"
 #define LED_DTS_NODE_PATH "/lsy_led0_usePinCtrl"
 
-/* 声明结构体，不需要等号，成员之间分号间隔 */ //--->无等号、分号、末尾分号
+/* 声明结构体，不需要等号，成员之间分号间隔 */ /* --->备注：声明结构体无等号、成员末尾分号 */
 struct led_device {
     dev_t devid;
     int   major;
@@ -82,7 +82,7 @@ static int __init led_init(void)
 {
     int err;
 
-    led_dev.node = of_find_compatible_node(NULL, NULL, "lsy-dont-know-why-gpioled");
+    led_dev.node = of_find_compatible_node(NULL, NULL, "atkalpha-gpioled"); /* 设备树中led设备节点的compatible属性值 */
     if (led_dev.node == 0) {
         return -ENODEV;
     }
