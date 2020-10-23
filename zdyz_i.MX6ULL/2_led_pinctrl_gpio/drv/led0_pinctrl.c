@@ -17,7 +17,7 @@
 
 #define LED_DTS_DEV_CNT   1
 #define LED_DTS_DEV_NAME  "led0_pinctrl"
-#define LED_DTS_NODE_PATH "/lsy_led0_usePinCtrl"
+//#define LED_DTS_NODE_PATH "/lsy_led0_usePinCtrl"
 
 /* 声明结构体，不需要等号，成员之间分号间隔 */ /* --->备注：声明结构体无等号、成员末尾分号 */
 struct led_device {
