@@ -1,7 +1,7 @@
-KERNELDIR := /home/lsy/arm/zdyz/system/4_NXP_Original_kernel_uboot/linux-imx-rel_imx_4.1.15_2.1.0_ga
+KERNELDIR := /home/lsy/tools/kernel_src/zdyz_4_NXP_Original_kernel/linux-imx-rel_imx_4.1.15_2.1.0_ga
 CURRENT_PATH := $(shell pwd)
 
-obj-m := led0_pinctrl.o
+obj-m := timer_led.o
 #OBJ := $(patsubst %.c,%.o,$(wildcard *.c))
 #obj-m := $(OBJ)
 

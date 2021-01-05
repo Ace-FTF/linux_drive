@@ -48,17 +48,20 @@ struct timer_led_dev timer_led_dev; /* 定时器设备 */
 static int led_init(void)
 {
 
+    return 0;
 }
 
 /*********    fops函数集      *******************************************/
-static int timer_led_open()
+static int timer_led_open(struct inode *inode, struct file *filp)
 {
 
+    return 0;
 }
 
-static long timer_led_unlocked_ioctl()
+static long timer_led_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 {
 
+    return 0;
 }
 
 static struct file_operations timer_led_fops = {
@@ -70,7 +73,7 @@ static struct file_operations timer_led_fops = {
 /*
  * 定时器回调函数
  */
-void timer_led_function()
+void timer_led_function(unsigned long arg)
 {
 
 }
